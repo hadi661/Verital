@@ -17,7 +17,7 @@
   var s = $("#sticker");
   var pos = s.position();
   $(window).on('scroll', function() {
-    var windowpos = $(window).scrollTop() > 300;
+    var windowpos = $(window).scrollTop() > 200;
     if (windowpos > pos.top) {
       s.addClass("stick");
     } else {
@@ -28,6 +28,27 @@
   /*----------------------------
    Navbar nav
   ------------------------------ */
+  
+  $(document).ready(function() {
+    // Function to handle click on main menu items
+    $('.main-menu ul.navbar-nav > li > a').on('click', function(e) {
+      // Remove active class from other menu items
+      $('.main-menu ul.navbar-nav > li').removeClass('active');
+      // Add active class to the clicked menu item
+      $(this).closest('li').addClass('active');
+  
+      // Check if it's a mobile device
+      if ($(window).width() < 992) {
+        // Slide toggle the dropdown menu
+        $(this).siblings('.dropdown-menu').slideToggle();
+      }
+    });
+  
+    /* Other JavaScript code */
+  
+  });
+  
+  
   var main_menu = $(".main-menu ul.navbar-nav li ");
   main_menu.on('click', function() {
     main_menu.removeClass("active");
@@ -72,8 +93,9 @@
   /*---------------------
     Venobox
   --------------------- */
-  var veno_box = $('.venobox');
-  veno_box.venobox();
+  new VenoBox({
+    selector: '.venobox'
+  });
 
   /*----------------------------
   Page Scroll
@@ -275,3 +297,4 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   });
 });
+
